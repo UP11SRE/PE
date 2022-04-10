@@ -1,23 +1,45 @@
 package com.example.pe.service;
 
+import com.example.pe.dao.UserDao;
 import com.example.pe.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public abstract class userServiceImpl implements userService{
+public class userServiceImpl implements userService{
 
-    List<User>list;
+    @Autowired
+    private UserDao userDao;
+
+    //List<User>list = new ArrayList<>();
+
 
     @Override
     public List<User> getUsers() {
-        return null;
+        return userDao.findAll();
     }
 
     @Override
     public User addUsers(User user){
-        list.add(user);
+        //list.add(user);
+        userDao.save(user);
         return user;
     }
+
+    @Override
+    public User updateUser(User user){
+       // list.forEach(e -> {
+         //   if (e.getName() == user.getName()){
+           // e.setName(user.getName());
+            //e.setPassword(user.getPassword());
+           // }
+        //} );
+        userDao.save(user);
+        return user;
+    }
+
+
 }

@@ -9,5 +9,5 @@ public interface userService {
     public User addUsers(User user);
 
 
-
+    public User updateUser(User user);
 }
