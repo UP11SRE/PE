@@ -1,12 +1,16 @@
 package com.example.pe.entity;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class User {
 
     @Id
+    @GeneratedValue
     private Long id;
     private String name;
     private String password;
@@ -44,6 +48,8 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 
     @Override
     public String toString() {

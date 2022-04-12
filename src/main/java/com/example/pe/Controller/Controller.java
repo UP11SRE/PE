@@ -3,6 +3,7 @@ package com.example.pe.Controller;
 import com.example.pe.entity.User;
 import com.example.pe.service.userService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,17 +30,21 @@ String i ="Hellos";
 
     }
 
-    @PostMapping("/users")
+    @PostMapping("/adduser")
     public User addUser(@RequestBody User user){
         return this.userService.addUsers(user);
     }
 
 
-    @PutMapping("/users")
+    @PutMapping("/adduser")
     public User updateUser(@RequestBody User user ){
         return this.userService.updateUser(user);
     }
 
+    //@PostMapping("/users")
+    //public ResponseEntity<Loginvalid>loginUser(@RequestBody User user){
+      //  return this.userService.loginUser(user);
+    //}
 
 
 
