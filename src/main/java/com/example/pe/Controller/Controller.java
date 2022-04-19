@@ -30,6 +30,10 @@ String i ="Hellos";
 
     }
 
+    //@PostMapping("/login")
+    //public User login()
+
+
     @PostMapping("/adduser")
     public User addUser(@RequestBody User user){
         return this.userService.addUsers(user);

@@ -44,10 +44,20 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
       //  return new BCryptPasswordEncoder(20);
     //}
 
+    @Autowired
+    private UserDetailsService userDetailsService;
     @Bean
-    public PasswordEncoder passwordEncoder(){
-        return NoOpPasswordEncoder.getInstance();
+    public AuthenticationProvider authProvider(){
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(userDetailsService);
+        provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+        return provider;
+
     }
+    //@Bean
+    //public PasswordEncoder passwordEncoder(){
+      //  return NoOpPasswordEncoder.getInstance();
+    //}
 
 
 
