@@ -47,7 +47,12 @@ public class userServiceImpl implements userService{
         return user;
     }
 
-   // @Override
+    //@Override
+   // public User loginUser(User user) {
+     //   return null;
+    //}
+
+    // @Override
     //public User loginUser(User user){
       //  list = this.list.stream().filter(e->e.getId()!=user) collect(Collecters.tolist());
     //}

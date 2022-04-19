@@ -1,9 +1,7 @@
 package com.example.pe.Controller;
 
 import com.example.pe.entity.User;
-import com.example.pe.service.userService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,8 +28,10 @@ String i ="Hellos";
 
     }
 
-    //@PostMapping("/login")
-    //public User login()
+    @PostMapping("/login")
+    public String login(){
+        return "Login sucessfully";
+    }
 
 
     @PostMapping("/adduser")
