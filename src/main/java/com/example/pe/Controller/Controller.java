@@ -34,6 +34,9 @@ String i ="Hellos";
     }
 
 
+
+
+
     @PostMapping("/adduser")
     public User addUser(@RequestBody User user){
         return this.userService.addUsers(user);

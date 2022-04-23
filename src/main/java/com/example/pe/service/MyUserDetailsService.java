@@ -18,7 +18,7 @@ public class MyUserDetailsService  implements UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException{
-        User user = dao.findByUsername(name);
+        User user = dao.findByName(name);
         if (name == null)
                 throw new UsernameNotFoundException("user 404");
 
