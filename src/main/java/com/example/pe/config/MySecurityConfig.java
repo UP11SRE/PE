@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -31,7 +32,12 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
+                //("/login")
                 .httpBasic();
+                //.and()
+                //.logout();
+
+
     }
 
    // @Override
@@ -46,18 +52,32 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService userDetailsService;
-    @Bean
-    public AuthenticationProvider authProvider(){
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService);
-        provider.setPasswordEncoder(new BCryptPasswordEncoder());
-        return provider;
+  //  @Bean
+    //public AuthenticationProvider authProvider(){
+      //  DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        //provider.setUserDetailsService(userDetailsService);
+       //// auth.authenticationProvider(provider);
+       // provider.setPasswordEncoder(new BCryptPasswordEncoder());
+        //return provider;
 
-    }
-    //@Bean
-    //public PasswordEncoder passwordEncoder(){
-      //  return NoOpPasswordEncoder.getInstance();
     //}
+
+    //@Bean
+    //public BCryptPasswordEncoder bCryptPasswordEncoder() {
+      //  return new BCryptPasswordEncoder();
+    //}
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        //super.configure(auth);
+        auth.userDetailsService(userDetailsService);
+                //.passwordEncoder(bCryptPasswordEncoder());
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return NoOpPasswordEncoder.getInstance();
+    }
 
 
 

@@ -4,18 +4,34 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.nio.file.attribute.UserPrincipal;
 import java.util.Collection;
 import java.util.Collections;
 
 
 public class userPrincipal implements UserDetails {
 
+  //  private String name;
+    //private String password;
+
+    //public userPrincipal(User user){
+      //  this.name = user.getUsername();
+        //this.password = user.getPassword();
+
+    //}
+
+
     private User user;
 
+
+
     public userPrincipal(User user){
-        super();
+       super();
         this.user = user;
+    }
+
+    public userPrincipal(com.example.pe.entity.User user)
+    {
+
     }
 
     @Override
