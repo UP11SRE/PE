@@ -15,6 +15,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import static org.hibernate.criterion.Restrictions.and;
+
 @Configuration
 @EnableWebSecurity
 public class MySecurityConfig extends WebSecurityConfigurerAdapter {
@@ -33,9 +35,15 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated()
                 .and()
                 //("/login")
-                .httpBasic();
-                //.and()
-                //.logout();
+                .httpBasic()
+                .and()
+                .loginPage("/login")
+                //.defaultSuccessUrl("/user")
+                //.failureUrl("/login?error")
+                //.permitAll()
+                .and()
+                .logout()
+                .permitAll();
 
 
     }
@@ -62,22 +70,22 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
     //}
 
-    //@Bean
-    //public BCryptPasswordEncoder bCryptPasswordEncoder() {
-      //  return new BCryptPasswordEncoder();
-    //}
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder(20);
+    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         //super.configure(auth);
-        auth.userDetailsService(userDetailsService);
-                //.passwordEncoder(bCryptPasswordEncoder());
+        auth.userDetailsService(userDetailsService)
+                .passwordEncoder(bCryptPasswordEncoder());
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return NoOpPasswordEncoder.getInstance();
-    }
+    //@Bean
+    //public PasswordEncoder passwordEncoder(){
+      //  return NoOpPasswordEncoder.getInstance();
+    //}
 
 
 
