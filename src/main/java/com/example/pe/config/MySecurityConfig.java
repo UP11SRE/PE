@@ -28,30 +28,59 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
+   // @Override
+    //protected void configure(HttpSecurity http) throws Exception{
+      //  http
+                //csrf disable for api testing , please turn on when we use on browser.
+        //        .csrf().disable()
+          //      .authorizeRequests()
+            //    .antMatchers("/user","/adduser").permitAll()
+              //  .anyRequest()
+                //.authenticated()
+                //.and()
+                //("/login")
+                //.httpBasic()
+               // .and()
+               // .loginPage("/login")
+                //.defaultSuccessUrl("/user")
+                //.failureUrl("/login?error")
+                //.permitAll()
+                //.and()
+               // .logout(logout -> logout
+                 //       .deleteCookies("dummy cookies"));
+                //.permitAll();
+
+
+    //}
+
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http
-                //csrf disable for api testing , please turn on when we use on browser.
+//csrf disable for api testing , please turn on when we use on browser.
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/user","/adduser").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
-                //("/login")
                 .httpBasic()
+//("/login")
+                //.formLogin()
+                //.loginPage("/login")
+//.defaultSuccessUrl("/user")
+//.failureUrl("/login?error")
+//.permitAll()
                 .and()
-               // .loginPage("/login")
-                //.defaultSuccessUrl("/user")
-                //.failureUrl("/login?error")
-                //.permitAll()
-                //.and()
-                .logout(logout -> logout
-                        .deleteCookies("dummy cookies"));
-                //.permitAll();
-
+                .logout()
+                //.logoutUrl("/logout")
+                .logoutUrl("/")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+                .permitAll();
 
     }
+
+
 
    // @Override
     //protected void configure(AuthenticationManagerBuilder auth) throws Exception{
@@ -85,7 +114,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Bean
-    public PasswordEncoder bCryptPasswordEncoder() {
+    public static BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 

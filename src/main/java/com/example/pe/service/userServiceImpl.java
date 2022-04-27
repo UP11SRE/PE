@@ -16,8 +16,9 @@ public class userServiceImpl implements userService{
 
     @Autowired
     private UserDao userDao;
-    //@Autowired
-    //private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     //List<User>list = new ArrayList<>();
 
@@ -30,7 +31,7 @@ public class userServiceImpl implements userService{
     @Override
     public User addUsers(User user){
         //list.add(user);
-
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userDao.save(user);
         return user;
     }
