@@ -4,11 +4,8 @@ import com.example.pe.dao.UserDao;
 import com.example.pe.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -46,6 +43,12 @@ public class userServiceImpl implements userService{
         //} );
         userDao.save(user);
         return user;
+    }
+
+    @Override
+    public void  deleteUser(long parseLong){
+        User entity = userDao.getOne(parseLong);
+        userDao.delete(entity);
     }
 
     //@Override

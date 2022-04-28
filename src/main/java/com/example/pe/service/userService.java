@@ -1,7 +1,8 @@
 package com.example.pe.service;
 
-import java.util.List;
 import com.example.pe.entity.User;
+
+import java.util.List;
 
 public interface userService {
 
@@ -11,7 +12,7 @@ public interface userService {
 
     public User updateUser(User user);
 
-    //public User loginUser(User user);
+    public void deleteUser(long parseLong);
 
-    //public User loginUser(User user);
+
 }

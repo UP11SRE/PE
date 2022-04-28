@@ -11,14 +11,7 @@ import java.util.Collections;
 
 public class userPrincipal implements UserDetails {
 
-  //  private String name;
-    //private String password;
 
-    //public userPrincipal(User user){
-      //  this.name = user.getUsername();
-        //this.password = user.getPassword();
-
-    //}
 
 
     private User user;
@@ -30,15 +23,7 @@ public class userPrincipal implements UserDetails {
         this.user = user;
     }
 
-    //public userPrincipal(com.example.pe.entity.User user)
-    //{
 
-    //}
-
-    //public userPrincipal(com.example.pe.entity.User user)
-    //{
-
-    //}
 
 
     @Override
